@@ -1,0 +1,34 @@
+responses.csv
+  s_01157233b29a47::t_438ef56bcfa0be 1-70
+  s_01157233b29a47::t_7693fa4233bf05 71-73
+claude_client.py
+  s_01157233b29a47::t_43fcdb41deb353 2,5-6,8-9,11,13-16,19-20,24-25,27-30,48-52,61-67,70,72-76,97-100
+  s_01157233b29a47::t_f100cdb9a57140 1,3-4,7,10,12,17-18,21-23,26,31-47,53-60,68-69,71,77-96
+.gitignore
+  s_01157233b29a47::t_43fcdb41deb353 1-3
+.env.example
+  s_01157233b29a47::t_43fcdb41deb353 5
+  s_01157233b29a47::t_f100cdb9a57140 1-4
+requirements.txt
+  s_01157233b29a47::t_f100cdb9a57140 1
+  s_01157233b29a47::t_43fcdb41deb353 2
+  s_01157233b29a47::t_438ef56bcfa0be 3
+run_df.py
+  s_01157233b29a47::t_438ef56bcfa0be 1-18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "d070bf6cf8eb2f7155d27aa78d3d15a443f999c4",
+  "prompts": {},
+  "sessions": {
+    "s_01157233b29a47": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f4db6b33-b119-495c-8ad2-cad13a881289",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Vishnu Sankar Chintapalli <vishnu.chintapalli@deliveryhero.com>"
+    }
+  }
+}
