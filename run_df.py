@@ -1,3 +1,5 @@
+import time
+
 import pandas as pd
 
 from claude_client import chat
@@ -12,7 +14,15 @@ df = pd.DataFrame({"question": [
     "What is regularization?",
 ]})
 
-df["response"] = df["question"].apply(lambda q: chat(q, MODEL, max_tokens=300))
+
+
+def timed_chat(question: str) -> tuple[str, float]:
+    start = time.perf_counter()
+    answer = chat(question, MODEL, max_tokens=300)
+    return answer, round(time.perf_counter() - start, 2)
+
+
+df[["response", "latency_s"]] = df["question"].apply(lambda q: pd.Series(timed_chat(q)))
 
 print(df)
 df.to_csv("responses.csv", index=False)

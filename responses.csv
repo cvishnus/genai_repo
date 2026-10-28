@@ -1,75 +1,77 @@
-question,response
-What is overfitting?,"**Overfitting** is a common problem in machine learning and statistics where a model learns the training data too well, including its noise and random fluctuations, rather than the underlying patterns. As a result, the model performs very well on the data it was trained on but poorly on new, unseen data.
+question,response,latency_s
+What is overfitting?,"**Overfitting** is a common problem in machine learning and statistics where a model learns the training data too well, including its noise and random fluctuations, and as a result performs poorly on new, unseen data.
 
-**Key characteristics:**
-- Very low error on training data
-- Much higher error on validation or test data
-- The model is overly complex relative to the amount or quality of data
+**Key ideas:**
 
-**Simple analogy:** A student who memorizes the answers to practice questions without understanding the concepts will do well on those exact questions but struggle with a new exam that covers the same material in different ways.
+- **Training vs. generalization:** A good model captures the underlying pattern that generalizes to new data. An overfitted model memorizes the specific examples it was trained on instead.
+- **Symptoms:** Very low error (or very high accuracy) on training data, but noticeably worse performance on validation or test data.
+- **Causes:**
+  - The model is too complex relative to the amount of data (e.g., a very deep neural network or a high-degree polynomial on a small dataset).
+  - Too little training data.
+  - Training for too many epochs.
+  - Noisy data or irrelevant features.
+  - Insufficient regularization.
 
-**Common causes:**
-- Model is too complex (e.g., a deep neural network or a high-degree polynomial for simple data)
-- Too little training data
-- Training for too many epochs
-- Noisy or irrelevant features
-- Insufficient regularization
-
-**Common ways to prevent or reduce it:**
--"
-What is a p-value?,"A **p-value** is the probability of obtaining results at least as extreme as the ones observed in your data, **assuming the null hypothesis is true**.
+**Simple example:** Suppose you fit a curve to 10 noisy data points",2.8
+What is a p-value?,"A **p-value** is the probability of obtaining results at least as extreme as the ones observed in your data, *assuming the null hypothesis is true*.
 
 **Key points:**
 
-- **Null hypothesis (H₀):** The default assumption, usually that there is no effect or no difference (e.g., ""this drug has no effect"").
-- **Interpretation:** A small p-value (commonly < 0.05) means the observed data would be unlikely if the null hypothesis were true, which is taken as evidence against H₀.
-- **Large p-value:** Means the data are consistent with the null hypothesis, but it does *not* prove H₀ is true.
+- **Null hypothesis (H₀):** The default assumption, usually that there is no effect or no difference (e.g., a drug has no effect, two groups have the same average).
+- **Interpretation:** A small p-value means your observed data would be unlikely if the null hypothesis were true, which provides evidence against H₀. A large p-value means the data are consistent with H₀, but that doesn't prove H₀ is true.
+- **Common threshold:** Researchers often use α = 0.05. If p < 0.05, the result is called ""statistically significant,"" meaning they reject the null hypothesis at that threshold.
 
-**Example:** Suppose you flip a coin 100 times and get 65 heads. If the coin is fair (the null hypothesis), the p-value tells you how likely it is to see 65 or more heads (or a result at least that far from 50) by chance alone. If that probability is very small, say 0.002"
-Explain precision vs recall.,"Precision and recall are two metrics used to evaluate classification models, especially when dealing with binary outcomes (positive vs. negative) or imbalanced datasets. They answer different questions about a model's predictions.
+**What a p-value is NOT:**
 
-## Setting up the terms
+- It is not the probability that the null hypothesis is true.
+- It is not the probability that the result happened by chance alone",1.72
+Explain precision vs recall.,"**Precision** and **recall** are two metrics used to evaluate classification models, especially when dealing with binary outcomes (positive vs. negative). They answer different questions about a model's predictions.
 
-For any prediction, there are four possible outcomes:
+## The Confusion Matrix Basics
 
-| | **Actually Positive** | **Actually Negative** |
+Before defining them, it helps to recall four outcomes:
+
+| | Actually Positive | Actually Negative |
 |---|---|---|
 | **Predicted Positive** | True Positive (TP) | False Positive (FP) |
 | **Predicted Negative** | False Negative (FN) | True Negative (TN) |
 
 ## Precision
 
-**Precision** answers: *Of all the items the model labeled as positive, how many were actually positive?*
+**Precision** asks: *Of all the items the model labeled as positive, how many were actually positive?*
 
 $$\text{Precision} = \frac{TP}{TP + FP}$$
 
 - High precision means few false alarms.
-- It matters most when the cost of a false positive is high.
+- It matters when the cost of a false positive is high.
 
-**Example:** A spam filter marks 100 emails as spam, and"
-What is cross-validation?,"Cross-validation is a statistical technique for evaluating how well a machine learning model (or any predictive model) will generalize to new, unseen data. Instead of judging a model by how well it fits the data it was trained on, cross-validation tests it on data it hasn't seen, which gives a more honest estimate of its real-world performance.
+**Example:** A spam filter flags 100 emails as spam, but only 90 ",1.74
+What is cross-validation?,"Cross-validation is a statistical technique for evaluating how well a machine learning model (or any predictive model) will generalize to data it hasn't seen during training. Instead of relying on a single train/test split, which can give misleading results depending on which data ends up in each set, cross-validation repeatedly splits the data and averages performance across the splits.
 
 **The basic idea**
 
-1. Split the dataset into several parts, called ""folds.""
-2. Train the model on all folds except one.
-3. Test the model on the held-out fold.
-4. Repeat so that each fold serves as the test set once.
-5. Average the results across all rounds.
+1. Split the dataset into *k* roughly equal parts, called ""folds.""
+2. For each fold:
+   - Hold it out as the validation set.
+   - Train the model on the remaining *k − 1* folds.
+   - Evaluate the model on the held-out fold.
+3. Average the *k* evaluation scores to get an overall estimate of performance.
 
-**Common types**
+**Common variants**
 
-- **k-fold cross-validation:** The data is split into *k* equal folds (commonly k = 5 or 10). This is the most widely used form.
-- **Stratified k-fold:** Like k-fold, but each fold preserves the class proportions of the original data. This is useful for imbalanced classification problems.
-"
-What is regularization?,"Regularization is a set of techniques used in statistics, machine learning, and optimization to prevent overfitting and improve a model's ability to generalize to new, unseen data. It works by adding a constraint or penalty to the learning process that discourages the model from becoming overly complex.
+- **k-fold cross-validation:** Typically k = 5 or 10. Every data point is used for validation exactly once.
+- **Stratified k-fold:** Preserves the class proportions in each",10.59
+What is regularization?,"Regularization is a set of techniques used to prevent overfitting in machine learning and statistical models, and to improve how well a model generalizes to new, unseen data.
 
-**The core problem it addresses:**
-A model with too much flexibility can fit the noise and quirks of the training data rather than the underlying pattern. It may score very well on training data but poorly on new data. This is overfitting.
+**The core problem:** A flexible model can fit the training data very closely, including its noise and random quirks. It then performs poorly on new data. Regularization discourages the model from becoming overly complex.
 
-**How it works:**
-Most regularization methods modify the loss function. Instead of minimizing only the error on the training data, the model minimizes:
+**How it works:** Most commonly, regularization adds a penalty term to the loss function that the model minimizes:
 
-$$\text{Loss} = \text{Error on training data} + \lambda \cdot \text{Penalty on complexity}$$
+$$\text{Loss} = \text{Error on training data} + \lambda \cdot \text{Penalty(model complexity)}$$
 
-Here, $\lambda$ (lambda) controls the strength of the penalty. A larger $\lambda$ means simpler models; a smaller one lets the model fit the"
+- **λ (lambda)** controls the strength of the penalty. Larger values push the model toward simplicity; λ = 0 means no regularization.
+- The penalty grows with the size of the model's parameters, so the model is pushed toward smaller or fewer weights.
+
+**Common types:**
+
+1. **L2 regularization (",3.54
