@@ -1,0 +1,19 @@
+describe_image.py
+  s_01157233b29a47::t_d22c7976ff83bc 1-24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.15",
+  "base_commit_sha": "5cbbdad31e7e2be5a5435d40d2b0acffac71d270",
+  "prompts": {},
+  "sessions": {
+    "s_01157233b29a47": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f4db6b33-b119-495c-8ad2-cad13a881289",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Vishnu Sankar Chintapalli <vishnu.chintapalli@deliveryhero.com>"
+    }
+  }
+}
